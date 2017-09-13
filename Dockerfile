@@ -1,3 +1,4 @@
+# If you change the node version here, please change it also in test.sh.
 FROM node:6
 
 RUN mkdir -p /app/code
