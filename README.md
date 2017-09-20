@@ -43,3 +43,7 @@ In the above example it's myproject_default. Now to get an accessibility report 
     
 In the above example, the network name is "myproject_default" and the service name is "web" (which corresponds to the name of the service in the docker-compose.yml file).
 
+Troubleshooting
+-----
+
+If you get "PhantomJS operation canceled" but you can see the website just fine in your browser, you may have an authentication popup which was "remembered" in your browser. Visit the site with a browser you rarely use or another device on which you haven't yet visited the site to see if it requires an htauth username/password, and disable it. See also https://github.com/pa11y/pa11y/pull/310, yet I'm not sure how to do this within the Docker container.
