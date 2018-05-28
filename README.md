@@ -4,10 +4,10 @@ Find accessibility problems with [Pa11y](https://github.com/pa11y/pa11y)
 
 Get help:
 
-    docker run dcycle/pa11y
+    docker run dcycle/pa11y:1
 
 Run pa11y on amazon.com:
 
-    docker run dcycle/pa11y https://amazon.com
+    docker run dcycle/pa11y:1 https://amazon.com
 
 See [this project on the Docker Hub](https://hub.docker.com/r/dcycle/pa11y/).
