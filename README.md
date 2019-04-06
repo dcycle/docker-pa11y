@@ -4,11 +4,11 @@ Find accessibility problems with [Pa11y](https://github.com/pa11y/pa11y)
 
 Get help:
 
-    docker run dcycle/pa11y:1
+    docker run --rm dcycle/pa11y:1
 
 Run pa11y on amazon.com:
 
-    docker run dcycle/pa11y:1 https://amazon.com
+    docker run --rm dcycle/pa11y:1 https://amazon.com
 
 See [this project on the Docker Hub](https://hub.docker.com/r/dcycle/pa11y/).
 
@@ -39,7 +39,7 @@ First, find the network name for your project, this is normally something like "
 
 In the above example it's myproject_default. Now to get an accessibility report during local development or continuous integration, run:
 
-    docker run --network=myproject_default dcycle/pa11y:1 https://web
+    docker run --rm --network myproject_default dcycle/pa11y:1 http://web
 
 In the above example, the network name is "myproject_default" and the service name is "web" (which corresponds to the name of the service in the docker-compose.yml file).
 
