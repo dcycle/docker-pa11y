@@ -7,4 +7,4 @@ jobs:
       - checkout
       - run:
           name: Tests
-          command: ./ci.sh
+          command: ./test.sh
