@@ -12,6 +12,27 @@ Run pa11y on amazon.com:
 
 See [this project on the Docker Hub](https://hub.docker.com/r/dcycle/pa11y/).
 
+Thresholds
+-----
+
+One technique to avoid being overwhelmed by dozens, or hundreds of accessibility errors on a legacy site is to define thresholds. For example, you might want to accept 100 errors on a site but not more; in which case you can do:
+
+    docker run --rm dcycle/pa11y:1 https://example.com -T 100
+
+Thresholds diminishing with time
+-----
+
+This image ships with a utility allowing to define diminishing thresholds. For example if your team decides that you want to go from a threshold of 100 errors on Jan 1st, 2019, to a threshold of 50 errors on Jan 1st, 2020, you can run:
+
+    THRESHOLD=$(docker run --rm --entrypoint='/bin/bash' dcycle/pa11y:1 -c \
+    'export start_date=2019-01-01; \
+    export start_threshold=100; \
+    export end_date=2020-01-01; \
+    export end_threshold=50; \
+    export verbose=0; \
+    python /scripts/calc-threshold.py')
+    docker run --rm dcycle/pa11y:1 https://example.com -T "$THRESHOLD"
+
 How to run a test on a local website managed through Docker Compose
 -----
 
@@ -42,6 +63,11 @@ In the above example it's myproject_default. Now to get an accessibility report 
     docker run --rm --network myproject_default dcycle/pa11y:1 http://web
 
 In the above example, the network name is "myproject_default" and the service name is "web" (which corresponds to the name of the service in the docker-compose.yml file).
+
+Resources
+-----
+
+* [An approach to automating Drupal accessibility tests, April 07, 2019, Dcycle blog](https://blog.dcycle.com/blog/2019-04-07/accessibility/).
 
 Troubleshooting
 -----

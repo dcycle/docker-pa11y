@@ -14,4 +14,6 @@ WORKDIR /app
 
 ADD docker-resources/config.json /app/config/config.json
 
+ADD docker-resources/calc-threshold.py /scripts/calc-threshold.py
+
 ENTRYPOINT [ "node_modules/.bin/pa11y", "-c", "/app/config/config.json" ]
