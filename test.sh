@@ -4,7 +4,7 @@ docker pull dcycle/browsertesting:3
 docker pull dcycle/pa11y
 docker build -t local-dcycle-pa11y-image .
 
-docker run --rm dcycle/pa11y:1
+docker run --rm dcycle/pa11y:2
 docker run --rm local-dcycle-pa11y-image
 
 docker run --rm --entrypoint='/bin/bash' local-dcycle-pa11y-image -c \

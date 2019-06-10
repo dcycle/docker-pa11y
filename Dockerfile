@@ -8,7 +8,7 @@ FROM dcycle/browsertesting:3
 
 RUN mkdir -p /app/code
 
-RUN cd /app && npm install pa11y
+RUN cd /app && npm install pa11y pa11y-runner-axe
 
 WORKDIR /app
 
@@ -16,4 +16,4 @@ ADD docker-resources/config.json /app/config/config.json
 
 ADD docker-resources/calc-threshold.py /scripts/calc-threshold.py
 
-ENTRYPOINT [ "node_modules/.bin/pa11y", "-c", "/app/config/config.json" ]
+ENTRYPOINT [ "node_modules/.bin/pa11y", "--runner", "axe", "-c", "/app/config/config.json" ]
