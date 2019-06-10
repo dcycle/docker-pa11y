@@ -15,7 +15,7 @@ See [this project on the Docker Hub](https://hub.docker.com/r/dcycle/pa11y/).
 About the Axe runner
 -----
 
-Version 1 of this image (dcycle/pa11y:1) uses the standard pa11y runner. A more standard alternative, the [https://www.deque.com/axe/](Axe runner), can be used as the engine instead. That is what is used on branch 2 (dcycle/pa11y:1).
+Version 1 of this image (dcycle/pa11y:1) uses the standard pa11y runner. A more standard alternative, the [https://www.deque.com/axe/](Axe runner), can be used as the engine instead. That is what is used on branch 2 (dcycle/pa11y:2).
 
 Thresholds
 -----
