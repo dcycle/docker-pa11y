@@ -6,9 +6,9 @@
 # work well on dcycle/browsertesting, I'll use that as a base image instead.
 FROM dcycle/browsertesting:4
 
-RUN mkdir -p /app/code
-
-RUN cd /app && npm install pa11y
+RUN mkdir -p /app/code && \
+  cd /app && apk add --no-cache python && \
+  npm install pa11y
 
 WORKDIR /app
 
