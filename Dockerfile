@@ -4,11 +4,11 @@
 # when trying to launch pa11y. I normally don't like to base of other than
 # an official image, but because I know Chromium/Puppeteer (used by pa11y)
 # work well on dcycle/browsertesting, I'll use that as a base image instead.
-FROM dcycle/browsertesting:3
+FROM dcycle/browsertesting:4
 
-RUN mkdir -p /app/code
-
-RUN cd /app && npm install pa11y
+RUN mkdir -p /app/code && \
+  cd /app && apk add --no-cache python3 && \
+  npm install pa11y
 
 WORKDIR /app
 
