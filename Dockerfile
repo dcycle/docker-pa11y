@@ -7,7 +7,7 @@
 FROM dcycle/browsertesting:4
 
 RUN mkdir -p /app/code && \
-  cd /app && apk add --no-cache python && \
+  cd /app && apk add --no-cache python3 && \
   npm install pa11y
 
 WORKDIR /app

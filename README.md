@@ -30,7 +30,7 @@ This image ships with a utility allowing to define diminishing thresholds. For e
     export end_date=2020-01-01; \
     export end_threshold=50; \
     export verbose=0; \
-    python /scripts/calc-threshold.py')
+    python3 /scripts/calc-threshold.py')
     docker run --rm dcycle/pa11y:2 https://example.com -T "$THRESHOLD"
 
 How to run a test on a local website managed through Docker Compose
