@@ -16,20 +16,28 @@ else
   source "$CREDENTIALS";
 fi
 
-DATE=`date '+%Y-%m-%d-%H-%M-%S-%Z'`
-MAJORVERSION='1'
-VERSION='1.0'
+./test.sh
 
-# Start by getting the latest version of the official drupal image
-docker pull node
-# Rebuild the entire thing
-docker build --no-cache -t dcycle/pa11y:"$VERSION" .
-docker build -t dcycle/pa11y:"$MAJORVERSION" .
-docker build -t dcycle/pa11y:"$MAJORVERSION".$DATE .
-docker build -t dcycle/pa11y:"$VERSION".$DATE .
+PROJECT=pa11y
+DATE=`date '+%Y-%m-%d-%H-%M-%S-%Z'`
+MAJORVERSION='2'
+VERSION='2.0'
+
+# See https://github.com/dcycle/prepare-docker-buildx, for M1 native images.
+git clone https://github.com/dcycle/prepare-docker-buildx.git
+cd prepare-docker-buildx
+export DOCKER_CLI_EXPERIMENTAL=enabled
+./scripts/run.sh
+cd ..
+
+docker buildx create --name mybuilder
+docker buildx use mybuilder
+docker buildx inspect --bootstrap
 docker login -u"$DOCKERHUBUSER" -p"$DOCKERHUBPASS"
-docker push dcycle/pa11y:"$VERSION"
-docker push dcycle/pa11y:"$MAJORVERSION"
-docker push dcycle/pa11y:"$VERSION"."$DATE"
-docker push dcycle/pa11y:"$MAJORVERSION"."$DATE"
-# No longer using the latest tag, use the major version tag instead.
+
+docker pull dcycle/browsertesting:4
+
+docker buildx build -t dcycle/"$PROJECT":"$VERSION" --platform linux/amd64,linux/arm64/v8 --push .
+docker buildx build -t dcycle/"$PROJECT":"$MAJORVERSION" --platform linux/amd64,linux/arm64/v8 --push .
+docker buildx build -t dcycle/"$PROJECT":"$MAJORVERSION".$DATE --platform linux/amd64,linux/arm64/v8 --push .
+docker buildx build -t dcycle/"$PROJECT":"$VERSION".$DATE --platform linux/amd64,linux/arm64/v8 --push .

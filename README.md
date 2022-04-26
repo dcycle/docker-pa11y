@@ -4,11 +4,11 @@ Find accessibility problems with [Pa11y](https://github.com/pa11y/pa11y)
 
 Get help:
 
-    docker run --rm dcycle/pa11y:1
+    docker run --rm dcycle/pa11y:2
 
 Run pa11y on amazon.com:
 
-    docker run --rm dcycle/pa11y:1 https://amazon.com
+    docker run --rm dcycle/pa11y:2 https://amazon.com
 
 See [this project on the Docker Hub](https://hub.docker.com/r/dcycle/pa11y/).
 
@@ -17,21 +17,21 @@ Thresholds
 
 One technique to avoid being overwhelmed by dozens, or hundreds of accessibility errors on a legacy site is to define thresholds. For example, you might want to accept 100 errors on a site but not more; in which case you can do:
 
-    docker run --rm dcycle/pa11y:1 https://example.com -T 100
+    docker run --rm dcycle/pa11y:2 https://example.com -T 100
 
 Thresholds diminishing with time
 -----
 
 This image ships with a utility allowing to define diminishing thresholds. For example if your team decides that you want to go from a threshold of 100 errors on Jan 1st, 2019, to a threshold of 50 errors on Jan 1st, 2020, you can run:
 
-    THRESHOLD=$(docker run --rm --entrypoint='/bin/bash' dcycle/pa11y:1 -c \
+    THRESHOLD=$(docker run --rm --entrypoint='/bin/sh' dcycle/pa11y:2 -c \
     'export start_date=2019-01-01; \
     export start_threshold=100; \
     export end_date=2020-01-01; \
     export end_threshold=50; \
     export verbose=0; \
     python /scripts/calc-threshold.py')
-    docker run --rm dcycle/pa11y:1 https://example.com -T "$THRESHOLD"
+    docker run --rm dcycle/pa11y:2 https://example.com -T "$THRESHOLD"
 
 How to run a test on a local website managed through Docker Compose
 -----
@@ -60,7 +60,7 @@ First, find the network name for your project, this is normally something like "
 
 In the above example it's myproject_default. Now to get an accessibility report during local development or continuous integration, run:
 
-    docker run --rm --network myproject_default dcycle/pa11y:1 http://web
+    docker run --rm --network myproject_default dcycle/pa11y:2 http://web
 
 In the above example, the network name is "myproject_default" and the service name is "web" (which corresponds to the name of the service in the docker-compose.yml file).
 
