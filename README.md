@@ -1,4 +1,4 @@
-[![GitHub Actions](https://github.com/dcycle/docker-jenkins/actions/workflows/config.yml/badge.svg)](../../actions/workflows/config.yml)
+[![GitHub Actions](https://github.com/dcycle/docker-pa11y/actions/workflows/config.yml/badge.svg)](../../actions/workflows/config.yml)
 
 Find accessibility problems with [Pa11y](https://github.com/pa11y/pa11y)
 
