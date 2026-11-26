@@ -8,7 +8,7 @@ def var(var):
         raise Exception('please set ' + var + ' as an environment variable; see readme')
 
 def verbose(string):
-    if (os.environ['verbose'] == 1):
+    if os.environ.get('verbose') == '1':
         print(string)
 
 verbose('**************************************')
